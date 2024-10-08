@@ -81,7 +81,9 @@ public class UserRepository {
         var session = sf.openSession();
         try {
             session.beginTransaction();
-            session.createQuery("FROM ru.job4j.cars.model.User");
+            var query = (User) session.createQuery("FROM User")
+                    .getSingleResult();
+            users.add(query);
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
