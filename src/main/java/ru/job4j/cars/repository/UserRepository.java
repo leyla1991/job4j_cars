@@ -2,7 +2,6 @@ package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
 import ru.job4j.cars.model.User;
 
 import java.util.ArrayList;
