@@ -20,10 +20,15 @@ public class UserRepository {
      */
     public User create(User user) {
         var session = sf.openSession();
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit();
-        session.close();
+        try {
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         return user;
     }
 
@@ -84,7 +89,7 @@ public class UserRepository {
         } finally {
             session.close();
         }
-        return List.of();
+        return users;
     }
 
     /**
@@ -93,18 +98,18 @@ public class UserRepository {
      */
     public Optional<User> findById(int userId) {
         var session = sf.openSession();
-        var user = new User();
+        Optional<User> user = Optional.of(new User());
         try {
             session.beginTransaction();
             user = session.createQuery("FROM User as i WHERE i.id = :fId", User.class)
-                    .setParameter("fId", userId).getSingleResult();
+                    .setParameter("fId", userId).uniqueResultOptional();
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
             session.close();
         }
-        return Optional.of(user);
+        return user;
     }
 
     /**
@@ -136,19 +141,20 @@ public class UserRepository {
      */
     public Optional<User> findByLogin(String login) {
         var session = sf.openSession();
-        var user = new User();
+        Optional<User> user = Optional.of(new User());
         try {
 
             session.beginTransaction();
-            user = (User) session.createQuery("FROM User as l WHERE l.login = :fId")
+            user =  session
+                    .createQuery("FROM User as l WHERE l.login = :fLogin", User.class)
                     .setParameter("fLogin", login)
-                    .getSingleResult();
+                    .uniqueResultOptional();
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
             session.close();
         }
-        return Optional.of(user);
+        return user;
     }
 }
