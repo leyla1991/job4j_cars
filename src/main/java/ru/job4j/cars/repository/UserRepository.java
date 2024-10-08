@@ -81,9 +81,8 @@ public class UserRepository {
         var session = sf.openSession();
         try {
             session.beginTransaction();
-            var query = (User) session.createQuery("FROM User")
-                    .getSingleResult();
-            users.add(query);
+            users = session.createQuery("FROM User", User.class)
+                    .getResultList();
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
@@ -123,9 +122,9 @@ public class UserRepository {
         List<User> usersLogin = new ArrayList<>();
         try {
             session.beginTransaction();
-            var query = (User) session.createQuery("FROM User as i WHERE i.login = :fLogin")
-                    .setParameter("fLogin", key).getSingleResult();
-            usersLogin.add(query);
+            var query = session.createQuery("FROM User as i WHERE i.login = :fLogin", User.class)
+                    .setParameter("fLogin", key).getResultList();
+            usersLogin.addAll(query);
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
