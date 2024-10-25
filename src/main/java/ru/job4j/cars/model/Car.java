@@ -17,7 +17,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class Car {
 
-
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
