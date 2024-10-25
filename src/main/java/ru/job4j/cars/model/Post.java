@@ -34,7 +34,7 @@ public class Post {
     @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> priceHistories = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name = "participates",
     joinColumns = {
             @JoinColumn(name = "user_id")
