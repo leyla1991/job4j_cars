@@ -26,9 +26,17 @@ public class Post {
     private String description;
     private LocalDateTime created;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
+    private List<File> filePhotos = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "auto_user_id")
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")

@@ -16,4 +16,8 @@
     <include file="scripts/009_ddl_create_history_owners.sql" relativeToChangelogFile="true"/>
     <include file="scripts/010_ddl_create_history.sql" relativeToChangelogFile="true"/>
     <include file="scripts/011_alt_post_car_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/012_create_table_files.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/013_create_table_brand.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/014_alt_table_post.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/015_alt_table_car.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
