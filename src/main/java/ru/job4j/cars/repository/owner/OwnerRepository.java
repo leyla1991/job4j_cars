@@ -6,5 +6,7 @@ import java.util.Collection;
 
 public interface OwnerRepository {
 
+    Owner save(Owner owner);
+
     Collection<Owner> findAll();
 }

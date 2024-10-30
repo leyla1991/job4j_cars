@@ -6,5 +6,7 @@ import java.util.Collection;
 
 public interface EngineRepository {
 
+    Engine save(Engine engine);
+
     Collection<Engine> findAll();
 }

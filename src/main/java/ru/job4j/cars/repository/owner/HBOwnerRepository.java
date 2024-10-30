@@ -14,6 +14,12 @@ public class HBOwnerRepository implements  OwnerRepository {
     private CrudRepository crudRepository;
 
     @Override
+    public Owner save(Owner owner) {
+        crudRepository.run(session -> session.save(owner));
+        return owner;
+    }
+
+    @Override
     public Collection<Owner> findAll() {
         return crudRepository.query("FROM Owner", Owner.class);
     }

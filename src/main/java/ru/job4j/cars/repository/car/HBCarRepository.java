@@ -23,7 +23,7 @@ public class HBCarRepository implements CarRepository {
 
     @Override
     public Optional<Car> findById(int id) {
-        return crudRepository.optional("FROM Car as i WHERE i.Id = :fId", Car.class,
+        return crudRepository.optional("FROM Car WHERE id = :fId", Car.class,
                 Map.of("fId", id));
     }
 

@@ -6,5 +6,7 @@ import java.util.Collection;
 
 public interface BrandRepository {
 
+    Brand save(Brand brand);
+
     Collection<Brand> findAll();
 }

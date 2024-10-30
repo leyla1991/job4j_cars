@@ -24,7 +24,7 @@ public class Post {
     private int id;
 
     private String description;
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now().withNano(0);
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "post_id")
@@ -34,7 +34,7 @@ public class Post {
     @JoinColumn(name = "auto_user_id")
     private User user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Car car;
 

@@ -14,6 +14,12 @@ public class HBBrandRepository implements BrandRepository {
     private CrudRepository crudRepository;
 
     @Override
+    public Brand save(Brand brand) {
+         crudRepository.run(session -> session.save(brand));
+         return brand;
+    }
+
+    @Override
     public Collection<Brand> findAll() {
         return crudRepository.query("FROM Brand", Brand.class);
     }

@@ -21,6 +21,5 @@ public class File {
 
     private String path;
 
-    @Column(name = "post_id")
     private int postId;
 }
