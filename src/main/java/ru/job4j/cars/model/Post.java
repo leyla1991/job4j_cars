@@ -26,7 +26,7 @@ public class Post {
     private String description;
     private LocalDateTime created = LocalDateTime.now().withNano(0);
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private List<File> filePhotos = new ArrayList<>();
 
