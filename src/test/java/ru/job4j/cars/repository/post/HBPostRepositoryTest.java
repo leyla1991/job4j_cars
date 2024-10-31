@@ -74,7 +74,7 @@ class HBPostRepositoryTest {
         Post post1 = new Post();
         File file = new File();
         file.setFileName("test1");
-        file.setPostId(1);
+        file.setPostId(post);
         hbFileRepository.save(file);
         post.setFilePhotos(List.of(file));
         hbPostRepository.save(post);
