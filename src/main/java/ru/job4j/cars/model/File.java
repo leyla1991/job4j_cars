@@ -21,7 +21,5 @@ public class File {
 
     private String path;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post postId;
+    private int postId;
 }

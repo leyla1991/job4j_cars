@@ -33,7 +33,13 @@ public class HBPostRepository implements PostRepository {
 
     @Override
     public Collection<Post> findAll() {
-        return crudRepository.query("FROM Post", Post.class);
+        var query = """
+                SELECT DISTINCT t
+                FROM Post as t
+                JOIN FETCH t.filePhotos
+                ORDER BY t.id ASC
+                """;
+        return crudRepository.query(query, Post.class);
     }
 
     @Override

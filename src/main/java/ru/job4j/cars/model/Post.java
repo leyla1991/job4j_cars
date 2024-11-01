@@ -38,11 +38,11 @@ public class Post {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> priceHistories = new ArrayList<>();
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(name = "participates",
     joinColumns = {
             @JoinColumn(name = "user_id")

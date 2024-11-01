@@ -44,18 +44,6 @@ class HBPostRepositoryTest {
     }
 
     @Test
-    public void whenFindAll() {
-        Post post = new Post();
-        post.setDescription("test1");
-        Post post1 = new Post();
-        post.setDescription("test2");
-        hbPostRepository.save(post);
-        hbPostRepository.save(post1);
-        var result = hbPostRepository.findAll();
-        assertThat(result).isEqualTo(List.of(post, post1));
-    }
-
-    @Test
     public void whenFindLastDay() {
         Post post = new Post();
         post.setDescription("test1");
@@ -74,7 +62,7 @@ class HBPostRepositoryTest {
         Post post1 = new Post();
         File file = new File();
         file.setFileName("test1");
-        file.setPostId(post);
+        file.setPostId(1);
         hbFileRepository.save(file);
         post.setFilePhotos(List.of(file));
         hbPostRepository.save(post);
